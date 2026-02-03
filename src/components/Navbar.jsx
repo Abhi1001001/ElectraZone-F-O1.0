@@ -12,6 +12,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "@/redux/userSlice";
+import { Separator } from "@/components/ui/separator";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -20,6 +21,7 @@ export default function Navbar() {
   const user = useSelector((state) => state.user.user);
   const cart = useSelector((state) => state.products.cart);
   const dispatch = useDispatch();
+  const API_URL = import.meta.env.VITE_API_URL;
   const admin = user?.role === "admin" ? true : false;
   console.log("cart from navbar", cart);
 
@@ -27,7 +29,7 @@ export default function Navbar() {
     // Perform logout logic here
     axios
       .post(
-        "http://localhost:4000/api/v1/users/logout",
+        `${API_URL}/api/v1/users/logout`,
         {},
         {
           headers: {
@@ -115,6 +117,18 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {open && (
         <div className="md:hidden border-t bg-white px-4 py-4 space-y-3">
+          {admin && (
+            <div className="flex flex-col gap-3">
+            <Link
+              to="/dashboard"
+              className="text-sm font-medium hover:text-primary transition"
+            >
+              Dashboard
+            </Link>
+            <Separator />
+            </div>
+          )}
+          
           <Link
             to="/products"
             className="block text-sm font-medium"
@@ -122,6 +136,7 @@ export default function Navbar() {
           >
             Products
           </Link>
+          <Separator />
 
           <Link
             to="/cart"
@@ -131,11 +146,12 @@ export default function Navbar() {
             <ShoppingCart className="h-5 w-5" />
             Cart
           </Link>
+          <Separator />
 
           {user ? (
             <>
               <p className="text-sm text-muted-foreground">
-                Logged in as <strong>{user.name}</strong>
+                Logged in as <strong>{user.firstName}</strong>
               </p>
               <Button
                 variant="destructive"

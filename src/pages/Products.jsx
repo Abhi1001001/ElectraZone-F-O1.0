@@ -84,6 +84,7 @@ export default function Products() {
   const [sortOrder, setSortOrder] = useState("");
 
   const dispatch = useDispatch();
+  const API_URL = import.meta.env.VITE_API_URL;
   // const loading = true;
 
   const getAllProducts = async () => {
@@ -91,7 +92,7 @@ export default function Products() {
     setLoading(true);
     console.log("getAllProducts api called");
     const res = await axios.get(
-      "http://localhost:4000/api/v1/products/getallproducts"
+      `${API_URL}/api/v1/products/getallproducts`
     );
 
     console.log(res.data.products);
@@ -168,11 +169,11 @@ export default function Products() {
     getAllProducts();
   }, []);
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto px-4 py-8 space-y-2">
       <div className="flex items-center justify-between">
-        <h2 className="text-3xl font-bold mb-8">Featured Products</h2>
+        <h2 className="md:text-3xl text-2xl font-bold ">Featured Products</h2>
         <Select onValueChange={(value) => setSortOrder(value)}>
-          <SelectTrigger className="w-full max-w-48">
+          <SelectTrigger className="w-32 md:max-w-48">
             <SelectValue placeholder="Sort by Price" />
           </SelectTrigger>
           <SelectContent>
@@ -184,7 +185,7 @@ export default function Products() {
           </SelectContent>
         </Select>
       </div>
-      <div className="flex gap-6">
+      <div className="flex md:flex-row flex-col justify-center items-start md:gap-6 gap-2">
         <FilterSidebar
           filters={filters}
           setFilters={setFilters}
@@ -192,7 +193,7 @@ export default function Products() {
           sortOrder={sortOrder}
           setSortOrder={setSortOrder}
         />
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 h-fit">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 h-fit">
           {products &&
             products.map((product) => (
               <ProductCard

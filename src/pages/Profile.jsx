@@ -58,6 +58,7 @@ export default function Profile() {
     }); //preview only
   };
 
+  const API_URL = import.meta.env.VITE_API_URL;
   const handleSave = () => {
     console.log("Updated Profile:", updateUser);
     setOpen(false);
@@ -77,7 +78,7 @@ export default function Profile() {
         formData.append("file", file); //image file for backend multer
       }
       axios
-        .put(`http://localhost:4000/api/v1/users/update/${userId}`, formData, {
+        .put(`${API_URL}/api/v1/users/update/${userId}`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${accessToken}`,
@@ -89,6 +90,7 @@ export default function Profile() {
         });
     } catch (error) {
       toast.error("failed to update profile");
+      console.log(error);
     }
   };
 
@@ -96,7 +98,7 @@ export default function Profile() {
     // Perform logout logic here
     axios
       .post(
-        "http://localhost:4000/api/v1/users/logout",
+        `${API_URL}/api/v1/users/logout`,
         {},
         {
           headers: {
@@ -254,7 +256,7 @@ export default function Profile() {
                           type="file"
                           name="profilePic"
                           accept="image/*"
-                        //   value={updateUser.profilePic}
+                          //   value={updateUser.profilePic}
                           onChange={handleFileChange}
                         />
                       </div>

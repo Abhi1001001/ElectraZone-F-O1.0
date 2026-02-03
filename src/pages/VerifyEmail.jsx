@@ -9,10 +9,11 @@ export default function VerifyEmail() {
   const [status, setStatus] = useState("Verifying...");
 
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const verifyEmail = () => {
     axios.post(
-      "http://localhost:4000/api/v1/users/verify",
+      `${API_URL}/api/v1/users/verify`,
       {},
       {
         headers: {

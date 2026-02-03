@@ -23,8 +23,9 @@ export default function CartPage() {
   const [promoCode, setPromoCode] = useState("");
   const [discount, setDiscount] = useState(0);
   const [promoError, setPromoError] = useState("");
+  const API_URL = import.meta.env.VITE_API_URL;
 
-  const API = "http://localhost:4000/api/v1/cart";
+  const API = `${API_URL}/api/v1/cart`;
   const accessToken = localStorage.getItem("token");
 
   const handleUpdateQuantity = async (productId, type) => {
@@ -107,7 +108,7 @@ export default function CartPage() {
       {/* Header */}
       <div className="flex items-center gap-3 mb-8">
         <ShoppingBag size={28} />
-        <h1 className="text-3xl font-bold">Your Cart</h1>
+        <h1 className="md:text-3xl text-2xl font-bold">Your Cart</h1>
         <span className="text-muted-foreground">({items.length} items)</span>
       </div>
 

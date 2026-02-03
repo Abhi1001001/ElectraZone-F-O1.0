@@ -40,9 +40,9 @@ export default function FilterSidebar({ filters, setFilters, allProducts }) {
   };
 
   const SidebarContent = (
-    <div className="space-y-6 w-full">
+    <div className="space-y-6 w-full overflow-scroll">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between mr-12 py-2">
         <h3 className="text-lg font-semibold">Filters</h3>
         <Button size="sm" onClick={clearFilters}>
           Clear
@@ -128,7 +128,9 @@ export default function FilterSidebar({ filters, setFilters, allProducts }) {
     <>
       {/* Desktop Sidebar */}
       <Card className="hidden md:block sticky top-20 h-fit rounded-2xl shadow">
-        <CardContent className="p-5 lg:w-64 md:w-52">{SidebarContent}</CardContent>
+        <CardContent className="p-5 lg:w-64 md:w-52">
+          {SidebarContent}
+        </CardContent>
       </Card>
 
       {/* Mobile Filter Button */}
@@ -139,7 +141,7 @@ export default function FilterSidebar({ filters, setFilters, allProducts }) {
               <Filter size={18} /> Filters
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="w-80">
+          <SheetContent side="left" className="w-80 px-6">
             {SidebarContent}
           </SheetContent>
         </Sheet>

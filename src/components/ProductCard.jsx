@@ -19,12 +19,13 @@ export default function ProductCard({ product, loading }) {
 
   const dispatch = useDispatch();
   const accessToken = localStorage.getItem("token");
+  const API_URL = import.meta.env.VITE_API_URL;
 
  const handleAddToCart = async (productId) => {
 
   try {
     const res = await axios.post(
-      "http://localhost:4000/api/v1/cart/add",
+      `${API_URL}/api/v1/cart/add`,
       { productId },
       {
         headers: {
@@ -32,7 +33,6 @@ export default function ProductCard({ product, loading }) {
         },
       }
     );
-
     console.log("Response:", res);
     toast.success(res.data.message);
     dispatch(setCart(res.data.cart));
@@ -42,19 +42,18 @@ export default function ProductCard({ product, loading }) {
   }
 };
 
-
   return (
     <>
-      <Card className="group rounded-2xl overflow-hidden shadow hover:shadow-xl transition">
+      <Card className="group rounded-2xl overflow-hidden shadow hover:shadow-xl transition py-0 gap-0">
         {/* Image */}
         {loading ? (
           <Skeleton className="aspect-video w-11/12 m-auto" />
         ) : (
-          <div className="relative bg-muted h-56 flex items-center justify-center overflow-hidden">
+          <div className="relative bg-muted flex items-center justify-center overflow-hidden">
             <img
               src={productImage[0].url}
               alt={productName}
-              className="h-full object-contain group-hover:scale-110 transition"
+              className="h-40 object-contain group-hover:scale-110 transition"
             />
             <Badge className="absolute top-3 left-3">{productCategory}</Badge>
           </div>
@@ -66,10 +65,10 @@ export default function ProductCard({ product, loading }) {
             <Skeleton className="h-4 w-2/3" />
           ) : (
             <div>
-              <h3 className="font-semibold text-lg line-clamp-1">
+              <h3 className="font-semibold md:text-lg text-md line-clamp-1">
                 {productName}
               </h3>
-              <p className="text-sm text-muted-foreground line-clamp-2">
+              <p className="md:text-sm text-xs text-muted-foreground line-clamp-2">
                 {productDescription}
               </p>
             </div>
@@ -96,7 +95,7 @@ export default function ProductCard({ product, loading }) {
             {loading ? (
               <Skeleton className="h-4 w-1/3" />
             ) : (
-              <p className="text-xl font-bold text-primary">₹{productPrice}</p>
+              <p className="md:text-xl text-md font-bold text-primary">₹{productPrice}</p>
             )}
             {loading ? (
               <Skeleton className="h-4 w-1/3" />
@@ -104,7 +103,7 @@ export default function ProductCard({ product, loading }) {
               <Button
                 onClick={() => handleAddToCart(product._id)}
                 size="sm"
-                className="gap-2"
+                className="gap-2 p-2!"
               >
                 <ShoppingCart size={16} /> Add
               </Button>

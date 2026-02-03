@@ -33,6 +33,7 @@ export default function Login() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -43,7 +44,7 @@ export default function Login() {
     setError("");
     try {
       axios
-        .post("http://localhost:4000/api/v1/users/login", formData, {
+        .post(`${API_URL}/api/v1/users/login`, formData, {
           headers: {
             "Content-Type": "application/json",
           },
