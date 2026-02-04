@@ -41,7 +41,9 @@ export default function Signup() {
     setLoading(true);
     console.log(loading)
     if (!formData.firstName || !formData.lastName || !formData.email || !formData.password) {
-      return setError("All fields are required");
+      setError("All fields are required");
+      setLoading(false);
+      return;
     }
 
     // if (formData.password !== formData.confirmPassword) {

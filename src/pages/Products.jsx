@@ -165,7 +165,7 @@ export default function Products() {
           setSortOrder={setSortOrder}
         />
         {loading && (
-          <div className="w-full h-[70vh] flex flex-col justify-center items-center gap-2">
+          <div className="w-full h-[50vh] flex flex-col justify-center items-center gap-2">
             <p className="md:text-2xl text-lg font-semibold">
               Our server is starting up...
             </p>
