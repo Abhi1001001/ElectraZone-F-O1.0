@@ -20,7 +20,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
 import { setUser } from "@/redux/userSlice";
@@ -44,6 +44,7 @@ export default function Profile() {
     role: user?.role || "user",
   });
   const [file, setFile] = useState(null);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setUpdateUser({ ...updateUser, [e.target.name]: e.target.value });
@@ -109,6 +110,7 @@ export default function Profile() {
       .then((res) => {
         toast.success(res.data.message);
         dispatch(setUser(null));
+        navigate("/");
       })
       .catch((err) => {
         toast.error(err.response.data.message);

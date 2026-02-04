@@ -109,35 +109,6 @@ export default function Products() {
   console.log("all products", allProducts);
 
   useEffect(() => {
-    // if (products.length === 0) return;
-
-    // let filtered = [...allProducts];
-
-    // if (filters.categories !== "All") {
-    //   filtered = filtered.filter(
-    //     (p) => p.productCategory === filters.categories,
-    //   );
-    // }
-
-    // if (filters.brands !== "All") {
-    //   filtered = filtered.filter((p) => p.productBrand === filters.brands);
-    // }
-
-    // filtered = filtered.filter(
-    //   (p) =>
-    //     p.productPrice >= filters.price[0] &&
-    //     p.productPrice <= filters.price[1],
-    // );
-
-    // if (sortOrder === "lowToHigh") {
-    //   filtered.sort((a, b) => a.productPrice - b.productPrice);
-    // }
-    // if (sortOrder === "highToLow") {
-    //   filtered.sort((a, b) => b.productPrice - a.productPrice);
-    // }
-
-    // dispatch(setProducts(filtered));
-
     const filteredProducts = allProducts.filter((p) => {
       const matchCategory =
         filters.categories.length === 0 ||
@@ -193,6 +164,14 @@ export default function Products() {
           sortOrder={sortOrder}
           setSortOrder={setSortOrder}
         />
+        {loading && (
+          <div className="w-full h-[70vh] flex flex-col justify-center items-center gap-2">
+            <p className="md:text-2xl text-lg font-semibold">
+              Our server is starting up...
+            </p>
+            <p>Thanks for your patience, this usually takes a few seconds.</p>
+          </div>
+        )}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 h-fit">
           {products &&
             products.map((product) => (

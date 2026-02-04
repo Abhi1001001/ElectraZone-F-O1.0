@@ -39,7 +39,9 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
     if (!formData.email || !formData.password) {
-      return setError("All fields are required");
+      setError("All fields are required");
+      setLoading(false);
+      return;
     }
     setError("");
     try {

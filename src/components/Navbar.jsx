@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -21,6 +21,7 @@ export default function Navbar() {
   const user = useSelector((state) => state.user.user);
   const cart = useSelector((state) => state.products.cart);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const API_URL = import.meta.env.VITE_API_URL;
   const admin = user?.role === "admin" ? true : false;
   console.log("cart from navbar", cart);
@@ -40,6 +41,7 @@ export default function Navbar() {
       .then((res) => {
         toast.success(res.data.message);
         dispatch(setUser(null));
+        navigate("/");
       })
       .catch((err) => {
         toast.error(err.response.data.message);
