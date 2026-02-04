@@ -1,7 +1,3 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Star, Heart, ShoppingCart } from "lucide-react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ProductCard from "./ProductCard";
@@ -51,7 +47,7 @@ export default function ElectronicsArrivals() {
       <div className="relative overflow-scroll">
         <div className="flex w-fit justify-center items-center gap-6 scrollbar-hide pb-4">
           {products.map((product) => (
-            <div className="min-w-65 max-w-65 rounded-2xl shadow hover:shadow-xl transition group">
+            <div key={product._id} className="min-w-65 max-w-65 rounded-2xl shadow hover:shadow-xl transition group">
               <ProductCard key={product._id} product={product} />
             </div>
           ))}

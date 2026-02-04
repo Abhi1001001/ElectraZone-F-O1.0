@@ -42,6 +42,9 @@ export default function ProductCard({ product, loading }) {
   }
 };
 
+console.log("loading from product card",loading);
+
+
   return (
     <>
       <Card className="group rounded-2xl overflow-hidden shadow hover:shadow-xl transition py-0 gap-0">

@@ -88,23 +88,23 @@ export default function Products() {
   // const loading = true;
 
   const getAllProducts = async () => {
-  try {
-    setLoading(true);
-    console.log("getAllProducts api called");
-    const res = await axios.get(
-      `${API_URL}/api/v1/products/getallproducts`
-    );
+    try {
+      setLoading(true);
+      console.log("getAllProducts api called");
+      const res = await axios.get(`${API_URL}/api/v1/products/getallproducts`);
 
-    console.log(res.data.products);
-    setAllProducts(res.data.products);
-    dispatch(setProducts(res.data.products));
-  } catch (error) {
-    console.log(error.response || error.message);
-    toast.error(error.response?.data?.message || error.message);
-  } finally {
-    setLoading(false);
-  }
-};
+      if (res.data.success) {
+        console.log("product from product page", res.data.products);
+        setAllProducts(res.data.products);
+        dispatch(setProducts(res.data.products));
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response?.data?.message || error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
   console.log("product from store", products);
   console.log("all products", allProducts);
 
@@ -185,7 +185,7 @@ export default function Products() {
           </SelectContent>
         </Select>
       </div>
-      <div className="flex md:flex-row flex-col justify-center items-start md:gap-6 gap-2">
+      <div className="flex md:flex-row flex-col justify-start items-start md:gap-6 gap-2">
         <FilterSidebar
           filters={filters}
           setFilters={setFilters}

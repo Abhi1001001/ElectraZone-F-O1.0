@@ -40,9 +40,9 @@ export default function FilterSidebar({ filters, setFilters, allProducts }) {
   };
 
   const SidebarContent = (
-    <div className="space-y-6 w-full overflow-scroll">
+    <div className="space-y-6 w-full overflow-scroll md:overflow-auto">
       {/* Header */}
-      <div className="flex items-center justify-between mr-12 py-2">
+      <div className="flex items-center justify-between mr-12 lg:mr-0 py-2">
         <h3 className="text-lg font-semibold">Filters</h3>
         <Button size="sm" onClick={clearFilters}>
           Clear
