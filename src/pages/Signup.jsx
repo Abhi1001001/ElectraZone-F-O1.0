@@ -39,8 +39,13 @@ export default function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    console.log(loading)
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.password) {
+    console.log(loading);
+    if (
+      !formData.firstName ||
+      !formData.lastName ||
+      !formData.email ||
+      !formData.password
+    ) {
       setError("All fields are required");
       setLoading(false);
       return;
@@ -60,30 +65,29 @@ export default function Signup() {
           },
         })
         .then((res) => {
-        //   console.log(res.data);
+          //   console.log(res.data);
           navigate("/verify");
           toast.success(res.data.message);
           setLoading(false);
         })
         .catch((err) => {
-        //   console.log(err);
-        toast.error(err.response.data.message);
-        setLoading(false);
+          //   console.log(err);
+          toast.error(err.response.data.message);
+          setLoading(false);
         });
     } catch (error) {
-      return(
-        setError(error.response.data.message),
-        setLoading(false)
-      )
+      return (setError(error.response.data.message), setLoading(false));
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 to-purple-100 px-4">
-      <Card className="w-full max-w-md shadow-xl rounded-2xl">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-red-950 px-4">
+      <Card className="w-full max-w-md bg-black text-white shadow-2xl rounded-2xl border border-red-600/40">
         <CardHeader className="text-center space-y-2">
-          <CardTitle className="text-2xl font-bold">Create Account</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-2xl font-bold text-red-500">
+            Create Account
+          </CardTitle>
+          <CardDescription className="text-gray-400">
             Join us and start shopping smarter 🛒
           </CardDescription>
         </CardHeader>
@@ -91,32 +95,40 @@ export default function Signup() {
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* Name */}
-            <div className="flex justify-between items-center">
-              <div className="space-y-2">
-                <Label htmlFor="name">First Name</Label>
+            <div className="flex gap-3">
+              <div className="space-y-2 w-full">
+                <Label htmlFor="firstName" className="text-gray-300">
+                  First Name
+                </Label>
                 <Input
                   id="firstName"
                   name="firstName"
                   placeholder="John"
                   value={formData.firstName}
                   onChange={handleChange}
+                  className="bg-gray-900 border-gray-700 focus:border-red-500 focus:ring-red-500 text-white"
                 />
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="name">Last Name</Label>
+              <div className="space-y-2 w-full">
+                <Label htmlFor="lastName" className="text-gray-300">
+                  Last Name
+                </Label>
                 <Input
                   id="lastName"
                   name="lastName"
                   placeholder="Doe"
                   value={formData.lastName}
                   onChange={handleChange}
+                  className="bg-gray-900 border-gray-700 focus:border-red-500 focus:ring-red-500 text-white"
                 />
               </div>
             </div>
 
             {/* Email */}
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email" className="text-gray-300">
+                Email
+              </Label>
               <Input
                 id="email"
                 type="email"
@@ -124,12 +136,15 @@ export default function Signup() {
                 placeholder="john@example.com"
                 value={formData.email}
                 onChange={handleChange}
+                className="bg-gray-900 border-gray-700 focus:border-red-500 focus:ring-red-500 text-white"
               />
             </div>
 
             {/* Password */}
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password" className="text-gray-300">
+                Password
+              </Label>
               <div className="flex justify-between items-center relative">
                 <Input
                   id="password"
@@ -138,16 +153,17 @@ export default function Signup() {
                   placeholder="••••••••"
                   value={formData.password}
                   onChange={handleChange}
+                  className="bg-gray-900 border-gray-700 focus:border-red-500 focus:ring-red-500 text-white pr-10"
                 />
                 {showPassword ? (
                   <EyeOff
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-2 cursor-pointer"
+                    className="absolute right-3 top-2 cursor-pointer text-gray-400 hover:text-red-500"
                   />
                 ) : (
                   <Eye
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-2 cursor-pointer"
+                    className="absolute right-3 top-2 cursor-pointer text-gray-400 hover:text-red-500"
                   />
                 )}
               </div>
@@ -155,7 +171,9 @@ export default function Signup() {
 
             {/* Confirm Password */}
             <div className="space-y-2">
-              <Label htmlFor="confirmPassword">Confirm Password</Label>
+              <Label htmlFor="confirmPassword" className="text-gray-300">
+                Confirm Password
+              </Label>
               <div className="flex justify-between items-center relative">
                 <Input
                   id="confirmPassword"
@@ -164,16 +182,17 @@ export default function Signup() {
                   placeholder="••••••••"
                   value={formData.confirmPassword}
                   onChange={handleChange}
+                  className="bg-gray-900 border-gray-700 focus:border-red-500 focus:ring-red-500 text-white pr-10"
                 />
                 {showPassword ? (
                   <EyeOff
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-2 cursor-pointer"
+                    className="absolute right-3 top-2 cursor-pointer text-gray-400 hover:text-red-500"
                   />
                 ) : (
                   <Eye
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-2 cursor-pointer"
+                    className="absolute right-3 top-2 cursor-pointer text-gray-400 hover:text-red-500"
                   />
                 )}
               </div>
@@ -183,18 +202,24 @@ export default function Signup() {
               <p className="text-sm text-red-500 text-center">{error}</p>
             )}
 
-            <Button type="submit" className="w-full rounded-xl">
-              {loading ? <><Loader2 className="mr-2 animate-spin" /> Please wait...</> : "Create Account"}
+            <Button
+              type="submit"
+              className="w-full rounded-xl bg-red-600 hover:bg-red-700 text-white"
+            >
+              {loading ? (
+                <>
+                  <Loader2 className="mr-2 animate-spin" /> Please wait...
+                </>
+              ) : (
+                "Create Account"
+              )}
             </Button>
 
-            <Separator />
+            <Separator className="bg-gray-800" />
 
-            <p className="text-sm text-center text-muted-foreground">
+            <p className="text-sm text-center text-gray-400">
               Already have an account?{" "}
-              <Link
-                to="/login"
-                className="text-primary cursor-pointer hover:underline"
-              >
+              <Link to="/login" className="text-red-500 hover:underline">
                 Login
               </Link>
             </p>

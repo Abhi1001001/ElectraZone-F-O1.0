@@ -72,94 +72,105 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 to-purple-100 px-4">
-      <Card className="w-full max-w-md shadow-xl rounded-2xl">
-        <CardHeader className="text-center space-y-2">
-          <CardTitle className="text-2xl font-bold">Welcome Back</CardTitle>
-          <CardDescription>Login to continue shopping 🛍️</CardDescription>
-        </CardHeader>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-red-950 px-4">
+  <Card className="w-full max-w-md bg-black text-white shadow-2xl rounded-2xl border border-red-600/40">
+    <CardHeader className="text-center space-y-2">
+      <CardTitle className="text-2xl font-bold text-red-500">
+        Welcome Back
+      </CardTitle>
+      <CardDescription className="text-gray-400">
+        Login to continue shopping 🛍️
+      </CardDescription>
+    </CardHeader>
 
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-5">
-            {/* Email */}
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                name="email"
-                placeholder="john@example.com"
-                value={formData.email}
-                onChange={handleChange}
+    <CardContent>
+      <form onSubmit={handleSubmit} className="space-y-5">
+        {/* Email */}
+        <div className="space-y-2">
+          <Label htmlFor="email" className="text-gray-300">
+            Email
+          </Label>
+          <Input
+            id="email"
+            type="email"
+            name="email"
+            placeholder="john@example.com"
+            value={formData.email}
+            onChange={handleChange}
+            className="bg-gray-900 border-gray-700 focus:border-red-500 focus:ring-red-500 text-white"
+          />
+        </div>
+
+        {/* Password */}
+        <div className="space-y-2">
+          <Label htmlFor="password" className="text-gray-300">
+            Password
+          </Label>
+          <div className="flex justify-between items-center relative">
+            <Input
+              id="password"
+              type={showPassword ? "text" : "password"}
+              name="password"
+              placeholder="••••••••"
+              value={formData.password}
+              onChange={handleChange}
+              className="bg-gray-900 border-gray-700 focus:border-red-500 focus:ring-red-500 text-white pr-10"
+            />
+            {showPassword ? (
+              <EyeOff
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-2 cursor-pointer text-gray-400 hover:text-red-500"
               />
-            </div>
-
-            {/* Password */}
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <div className="flex justify-between items-center relative">
-                <Input
-                  id="password"
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  placeholder="••••••••"
-                  value={formData.password}
-                  onChange={handleChange}
-                />
-                {showPassword ? (
-                  <EyeOff
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-2 cursor-pointer"
-                  />
-                ) : (
-                  <Eye
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-2 cursor-pointer"
-                  />
-                )}
-              </div>
-            </div>
-
-            {error && (
-              <p className="text-sm text-red-500 text-center">{error}</p>
+            ) : (
+              <Eye
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-2 cursor-pointer text-gray-400 hover:text-red-500"
+              />
             )}
+          </div>
+        </div>
 
-            <Button type="submit" className="w-full rounded-xl">
-              {loading ? (
-                <>
-                  <Loader2 className="mr-2 animate-spin" /> Please wait...
-                </>
-              ) : (
-                "Login"
-              )}
-            </Button>
+        {error && (
+          <p className="text-sm text-red-500 text-center">{error}</p>
+        )}
 
-            <div className="flex items-center justify-between text-sm">
-              <span className="text-muted-foreground cursor-pointer hover:underline">
-                Forgot password?
-              </span>
-              <Link
-                to="/signup"
-                className="text-primary cursor-pointer hover:underline"
-              >
-                Create account
-              </Link>
-            </div>
+        <Button
+          type="submit"
+          className="w-full rounded-xl bg-red-600 hover:bg-red-700 text-white"
+        >
+          {loading ? (
+            <>
+              <Loader2 className="mr-2 animate-spin" /> Please wait...
+            </>
+          ) : (
+            "Login"
+          )}
+        </Button>
 
-            <Separator />
+        <div className="flex items-center justify-between text-sm">
+          <span className="text-gray-400 cursor-pointer hover:text-red-500 hover:underline">
+            Forgot password?
+          </span>
+          <Link
+            to="/signup"
+            className="text-red-500 cursor-pointer hover:underline"
+          >
+            Create account
+          </Link>
+        </div>
 
-            <p className="text-sm text-center text-muted-foreground">
-              Don’t have an account?{" "}
-              <Link
-                to="/signup"
-                className="text-primary cursor-pointer hover:underline"
-              >
-                Sign up
-              </Link>
-            </p>
-          </form>
-        </CardContent>
-      </Card>
-    </div>
+        <Separator className="bg-gray-800" />
+
+        <p className="text-sm text-center text-gray-400">
+          Don’t have an account?{" "}
+          <Link to="/signup" className="text-red-500 hover:underline">
+            Sign up
+          </Link>
+        </p>
+      </form>
+    </CardContent>
+  </Card>
+</div>
+
   );
 }

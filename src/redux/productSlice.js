@@ -13,8 +13,11 @@ const productSlice = createSlice({
         setCart: (state, action) => {
             state.cart = action.payload;
         },
+        setCollection: (state, action) => {
+            state.collection = action.payload;
+        },
     },
 })
 
-export const { setProducts, setCart } = productSlice.actions
+export const { setProducts, setCart, setCollection } = productSlice.actions
 export default productSlice.reducer

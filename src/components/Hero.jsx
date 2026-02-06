@@ -4,7 +4,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Link } from "react-router-dom";
 
-
 const slides = [
   {
     id: 1,
@@ -55,7 +54,7 @@ const slides = [
 
 export default function Hero() {
   return (
-    <section className="w-full md:h-[80vh] bg-[#fafafa]">
+    <section className="w-full md:h-[85vh] bg-black text-white">
       <Swiper
         modules={[Pagination, Autoplay]}
         pagination={{ clickable: true }}
@@ -65,36 +64,42 @@ export default function Hero() {
       >
         {slides.map((item) => (
           <SwiperSlide key={item.id} className="flex items-center">
-            <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 items-center px-6 md:px-20 md:gap-10 gap-4">
+            <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 items-center px-6 md:px-20 md:gap-12 gap-6">
               {/* Left Content */}
-              <div className="md:space-y-6 space-y-2 md:mt-0 mt-2">
-                <p className="md:text-sm text-xs font-semibold uppercase tracking-wide text-white bg-[#ef233c] w-max px-3 py-1 rounded-bl-xl rounded-tr-xl">
+              <div className="space-y-4 md:space-y-6">
+                <p className="text-xs md:text-sm font-semibold uppercase tracking-wide text-black bg-red-500 w-max px-4 py-1 rounded-br-xl rounded-tl-xl shadow">
                   {item.tag}
                 </p>
 
-                <h1 className="text-2xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight">
                   {item.title}
                 </h1>
 
-                <p className="text-md text-gray-600 max-w-xl">{item.desc}</p>
+                <p className="text-zinc-400 max-w-xl">{item.desc}</p>
 
-                <div className="flex md:justify-self-start justify-between flex-wrap gap-4">
-                  <Link to="/products" className="md:px-7 px-4 py-3 bg-black text-white rounded-md hover:bg-gray-800 transition">
-                    Get Yours Now
+                <div className="flex flex-wrap gap-4">
+                  <Link
+                    to="/products"
+                    className="px-6 py-3 bg-red-500 text-black font-semibold rounded-md hover:bg-red-600 transition"
+                  >
+                    Shop Now
                   </Link>
-                  <Link to="/products" className="md:px-7 px-4 py-3 border border-black rounded-md hover:bg-black hover:text-white transition">
-                    Discover More
+                  <Link
+                    to="/products"
+                    className="px-6 py-3 border border-zinc-700 rounded-md hover:border-red-500 hover:text-red-500 transition"
+                  >
+                    Explore
                   </Link>
                 </div>
               </div>
 
               {/* Right Image */}
               <div className="relative flex justify-center items-center">
-                <div className="absolute -z-10 h-full w-80 md:h-105 md:w-105 rounded-full bg-gray-100" />
+                <div className="absolute -z-10 h-[280px] w-[280px] md:h-[420px] md:w-[420px] rounded-full bg-gradient-to-tr from-red-500/20 to-red-700/10 blur-2xl" />
                 <img
                   src={item.img}
                   alt={item.product}
-                  className="w-full h-full md:w-85 lg:w-full object-contain drop-shadow-2xl"
+                  className="w-full max-w-[420px] object-contain drop-shadow-[0_20px_40px_rgba(239,68,68,0.35)]"
                 />
               </div>
             </div>

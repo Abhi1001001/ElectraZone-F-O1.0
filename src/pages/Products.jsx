@@ -140,49 +140,67 @@ export default function Products() {
     getAllProducts();
   }, []);
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 space-y-2">
+    <section className="bg-zinc-900">
+    <div className="max-w-7xl mx-auto px-4 py-8 space-y-4 text-white">
+      {/* Header */}
       <div className="flex items-center justify-between">
-        <h2 className="md:text-3xl text-2xl font-bold ">Featured Products</h2>
+        <h2 className="md:text-3xl text-2xl font-bold text-red-500">
+          Featured Products
+        </h2>
+
         <Select onValueChange={(value) => setSortOrder(value)}>
-          <SelectTrigger className="w-32 md:max-w-48">
+          <SelectTrigger className="w-32 md:max-w-48 bg-black border-gray-700 text-white focus:ring-red-500 focus:border-red-500">
             <SelectValue placeholder="Sort by Price" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="bg-black border-gray-700 text-white">
             <SelectGroup>
-              <SelectLabel>Sort</SelectLabel>
-              <SelectItem value="lowToHigh">Price Low to High</SelectItem>
-              <SelectItem value="highToLow">Price High to Low</SelectItem>
+              <SelectLabel className="text-gray-400">Sort</SelectLabel>
+              <SelectItem value="lowToHigh" className="hover:bg-red-600/20">
+                Price Low to High
+              </SelectItem>
+              <SelectItem value="highToLow" className="hover:bg-red-600/20">
+                Price High to Low
+              </SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
       </div>
-      <div className="flex md:flex-row flex-col justify-start items-start md:gap-6 gap-2">
-        <FilterSidebar
-          filters={filters}
-          setFilters={setFilters}
-          allProducts={allProducts}
-          sortOrder={sortOrder}
-          setSortOrder={setSortOrder}
-        />
-        {loading && (
-          <div className="w-full h-[50vh] flex flex-col justify-center items-center gap-2">
-            <p className="md:text-2xl text-lg font-semibold">
+
+      <div className="flex md:flex-row flex-col justify-start items-start md:gap-6 gap-4">
+        {/* Sidebar */}
+        <div className="w-full md:w-64">
+          <FilterSidebar
+            filters={filters}
+            setFilters={setFilters}
+            allProducts={allProducts}
+            sortOrder={sortOrder}
+            setSortOrder={setSortOrder}
+          />
+        </div>
+
+        {/* Products */}
+        {loading ? (
+          <div className="w-full h-[50vh] flex flex-col justify-center items-center gap-2 text-center">
+            <p className="md:text-2xl text-lg font-semibold text-red-500">
               Our server is starting up...
             </p>
-            <p>Thanks for your patience, this usually takes a few seconds.</p>
+            <p className="text-gray-400">
+              Thanks for your patience, this usually takes a few seconds.
+            </p>
           </div>
-        )}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 h-fit">
-          {products &&
-            products.map((product) => (
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 h-fit w-full">
+            {products?.map((product) => (
               <ProductCard
                 key={product._id}
                 product={product}
                 loading={loading}
               />
             ))}
-        </div>
+          </div>
+        )}
       </div>
     </div>
+    </section>
   );
 }

@@ -10,6 +10,8 @@ import Profile from "./pages/Profile";
 import Products from "./pages/Products";
 import Cart from "./pages/Cart";
 import Dashboard from "./pages/Dashboard";
+import Collection from "./pages/Collection";
+import ProductDetails from "./pages/ProductDetails";
 
 const router = createBrowserRouter([
   {
@@ -87,6 +89,24 @@ const router = createBrowserRouter([
       <>
       <Navbar/>
         <Dashboard />
+      </>
+    ),
+  },
+  {
+    path: "/collections/:category",
+    element: (
+      <>
+      <Navbar/>
+        <Collection />
+      </>
+    ),
+  },
+  {
+    path: "/product/:productId",
+    element: (
+      <>
+      <Navbar/>
+        <ProductDetails />
       </>
     ),
   },
