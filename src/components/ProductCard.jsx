@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import { useDispatch } from "react-redux";
 import { setCart } from "@/redux/productSlice";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function ProductCard({ product, loading }) {
   const {
@@ -51,11 +51,13 @@ export default function ProductCard({ product, loading }) {
           <Skeleton className="aspect-video w-11/12 m-auto bg-gray-800" />
         ) : (
           <div className="relative bg-gradient-to-br from-black to-gray-900 flex items-center justify-center overflow-hidden">
+            <Link to={`/product/${product._id}`}>
             <img
               src={productImage[0].url}
               alt={productName}
               className="h-40 object-contain group-hover:scale-110 transition"
             />
+            </Link>
             <Badge className="absolute top-3 left-3 bg-red-600 text-white">
               {productCategory}
             </Badge>

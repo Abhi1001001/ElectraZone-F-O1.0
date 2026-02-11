@@ -12,7 +12,14 @@ import Cart from "./pages/Cart";
 import Dashboard from "./pages/Dashboard";
 import Collection from "./pages/Collection";
 import ProductDetails from "./pages/ProductDetails";
-
+import AdminSales from "./pages/admin/AdminSales";
+import AddProduct from "./pages/admin/AddProduct";
+import AdminProduct from "./pages/admin/AdminProduct";
+import AdminOrders from "./pages/admin/AdminOrders";
+import UserOrders from "./pages/admin/UserOrders";
+import AdminUsers from "./pages/admin/AdminUsers";
+import UserInfo from "./pages/admin/UserInfo";
+import ProtectedRoute from "./components/ProtectedRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -59,17 +66,17 @@ const router = createBrowserRouter([
   {
     path: "/profile/:userId",
     element: (
-      <>
-      <Navbar/>
+      <ProtectedRoute>
+        <Navbar />
         <Profile />
-      </>
+      </ProtectedRoute>
     ),
   },
   {
     path: "/products",
     element: (
       <>
-      <Navbar/>
+        <Navbar />
         <Products />
       </>
     ),
@@ -77,26 +84,17 @@ const router = createBrowserRouter([
   {
     path: "/cart",
     element: (
-      <>
-      <Navbar/>
+      <ProtectedRoute>
+        <Navbar />
         <Cart />
-      </>
-    ),
-  },
-  {
-    path: "/dashboard",
-    element: (
-      <>
-      <Navbar/>
-        <Dashboard />
-      </>
+      </ProtectedRoute>
     ),
   },
   {
     path: "/collections/:category",
     element: (
       <>
-      <Navbar/>
+        <Navbar />
         <Collection />
       </>
     ),
@@ -105,10 +103,49 @@ const router = createBrowserRouter([
     path: "/product/:productId",
     element: (
       <>
-      <Navbar/>
+        <Navbar />
         <ProductDetails />
       </>
     ),
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <ProtectedRoute adminOnly={true}>
+        {" "}
+        <Dashboard />{" "}
+      </ProtectedRoute>
+    ),
+    children: [
+      {
+        path: "sales",
+        element: <AdminSales />,
+      },
+      {
+        path: "add-product",
+        element: <AddProduct />,
+      },
+      {
+        path: "products",
+        element: <AdminProduct />,
+      },
+      {
+        path: "orders",
+        element: <AdminOrders />,
+      },
+      {
+        path: "users/orders/:userId",
+        element: <UserOrders />,
+      },
+      {
+        path: "users",
+        element: <AdminUsers />,
+      },
+      {
+        path: "users/:userId",
+        element: <UserInfo />,
+      },
+    ],
   },
 ]);
 
