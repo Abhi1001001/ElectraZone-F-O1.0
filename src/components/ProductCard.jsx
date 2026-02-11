@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import { useDispatch } from "react-redux";
 import { setCart } from "@/redux/productSlice";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function ProductCard({ product, loading }) {
   const {
@@ -19,7 +19,6 @@ export default function ProductCard({ product, loading }) {
   } = product;
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const accessToken = localStorage.getItem("token");
   const API_URL = import.meta.env.VITE_API_URL;
 
@@ -45,7 +44,7 @@ export default function ProductCard({ product, loading }) {
 
   return (
     <>
-      <Card onClick={() => navigate(`/product/${product._id}`)} className="group rounded-2xl overflow-hidden bg-black text-white shadow-lg hover:shadow-red-500/30 transition py-0 gap-0 border border-red-600/40">
+      <Card className="group rounded-2xl overflow-hidden bg-black text-white shadow-lg hover:shadow-red-500/30 transition py-0 gap-0 border border-red-600/40">
         {/* Image */}
         {loading ? (
           <Skeleton className="aspect-video w-11/12 m-auto bg-gray-800" />
