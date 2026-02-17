@@ -91,7 +91,7 @@ export default function Products() {
     try {
       setLoading(true);
       console.log("getAllProducts api called");
-      const res = await axios.get(`${API_URL}/api/v1/products/getallproducts`);
+      const res = await axios.get(`${API_URL}/products/getallproducts`);
 
       if (res.data.success) {
         console.log("product from product page", res.data.products);

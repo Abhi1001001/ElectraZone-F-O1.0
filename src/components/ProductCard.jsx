@@ -25,7 +25,7 @@ export default function ProductCard({ product, loading }) {
   const handleAddToCart = async (productId) => {
     try {
       const res = await axios.post(
-        `${API_URL}/api/v1/cart/add`,
+        `${API_URL}/cart/add`,
         { productId },
         {
           headers: {

@@ -13,7 +13,7 @@ export default function VerifyEmail() {
 
   const verifyEmail = () => {
     axios.post(
-      `${API_URL}/api/v1/users/verify`,
+      `${API_URL}/users/verify`,
       {},
       {
         headers: {

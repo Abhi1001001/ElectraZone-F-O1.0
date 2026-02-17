@@ -24,7 +24,7 @@ export default function ProductDetails() {
   const handleAddToCart = async (productId) => {
     try {
       const res = await axios.post(
-        `${API_URL}/api/v1/cart/add`,
+        `${API_URL}/cart/add`,
         { productId },
         {
           headers: {
@@ -45,7 +45,7 @@ export default function ProductDetails() {
     const fetchProduct = async () => {
       try {
         const res = await axios.get(
-          `${API_URL}/api/v1/products/getproduct/${productId}`,
+          `${API_URL}/products/getproduct/${productId}`,
         );
         setProduct(res.data.product);
         console.log(res.data.product);

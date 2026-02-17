@@ -25,7 +25,7 @@ export default function CartPage() {
   const [promoError, setPromoError] = useState("");
   const API_URL = import.meta.env.VITE_API_URL;
 
-  const API = `${API_URL}/api/v1/cart`;
+  const API = `${API_URL}/cart`;
   const accessToken = localStorage.getItem("token");
 
   const handleUpdateQuantity = async (productId, type) => {

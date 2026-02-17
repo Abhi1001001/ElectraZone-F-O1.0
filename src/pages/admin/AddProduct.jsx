@@ -50,7 +50,7 @@ export default function AddProduct() {
 console.log("Submitting:", Object.fromEntries(payload));
     try {
       setLoading(true);
-      const res = axios.post(`${API_URL}/api/v1/products/add`, payload, {
+      const res = axios.post(`${API_URL}/products/add`, payload, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
