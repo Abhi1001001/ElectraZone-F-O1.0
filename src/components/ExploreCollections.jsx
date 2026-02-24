@@ -19,7 +19,7 @@ const collections = [
   },
   {
     id: 3,
-    title: "Speakers",
+    title: "Speaker",
     image: "./images/speakers.png",
   },
   {
@@ -29,7 +29,7 @@ const collections = [
   },
   {
     id: 5,
-    title: "Mobiles",
+    title: "Mobile",
     image: "./images/mobiles.png",
   },
   {

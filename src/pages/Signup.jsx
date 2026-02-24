@@ -59,7 +59,7 @@ export default function Signup() {
     // console.log("Signup Data:", formData);
     try {
       axios
-        .post(`${API_URL}/api/v1/users/register`, formData, {
+        .post(`${API_URL}/users/register`, formData, {
           headers: {
             "Content-Type": "application/json",
           },

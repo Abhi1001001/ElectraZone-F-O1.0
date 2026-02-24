@@ -40,6 +40,8 @@ export default function ProductDetails() {
       toast.error(error.response?.data?.message || error.message);
     }
   };
+  console.log("product id from product detail page", productId);
+  
 
   useEffect(() => {
     const fetchProduct = async () => {

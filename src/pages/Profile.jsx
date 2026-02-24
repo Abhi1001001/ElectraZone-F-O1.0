@@ -79,7 +79,7 @@ export default function Profile() {
         formData.append("file", file); //image file for backend multer
       }
       axios
-        .put(`${API_URL}/api/v1/users/update/${userId}`, formData, {
+        .put(`${API_URL}/users/update/${userId}`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${accessToken}`,
@@ -99,7 +99,7 @@ export default function Profile() {
     // Perform logout logic here
     axios
       .post(
-        `${API_URL}/api/v1/users/logout`,
+        `${API_URL}/users/logout`,
         {},
         {
           headers: {

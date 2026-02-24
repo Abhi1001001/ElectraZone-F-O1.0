@@ -30,7 +30,7 @@ export default function Navbar() {
     // Perform logout logic here
     axios
       .post(
-        `${API_URL}/api/v1/users/logout`,
+        `${API_URL}/users/logout`,
         {},
         {
           headers: {
@@ -60,7 +60,7 @@ export default function Navbar() {
         <nav className="hidden md:flex items-center gap-7">
           {admin && (
             <Link
-              to="/dashboard"
+              to="/dashboard/sales"
               className="text-sm font-medium text-zinc-300 hover:text-red-500 transition"
             >
               Dashboard
@@ -140,7 +140,7 @@ export default function Navbar() {
           {admin && (
             <div className="flex flex-col gap-3">
               <Link
-                to="/dashboard"
+                to="/dashboard/sales"
                 className="text-sm font-medium text-zinc-300 hover:text-red-500 transition"
                 onClick={() => setOpen(false)}
               >

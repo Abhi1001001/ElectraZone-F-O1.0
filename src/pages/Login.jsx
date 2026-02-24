@@ -46,7 +46,7 @@ export default function Login() {
     setError("");
     try {
       axios
-        .post(`${API_URL}/api/v1/users/login`, formData, {
+        .post(`${API_URL}/users/login`, formData, {
           headers: {
             "Content-Type": "application/json",
           },

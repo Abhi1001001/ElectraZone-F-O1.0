@@ -33,7 +33,7 @@ export default function AddProduct() {
     setFormData((prev) => ({ ...prev, files: Array.from(e.target.files) }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const payload = new FormData();
@@ -43,18 +43,17 @@ export default function AddProduct() {
     payload.append("productCategory", formData.productCategory);
     payload.append("productBrand", formData.productBrand);
 
-    
     if (formData.files.length === 0)
       return toast.error("Please select at least one image");
     formData.files.forEach((file) => payload.append("files", file));
-console.log("Submitting:", Object.fromEntries(payload));
     try {
       setLoading(true);
-      const res = axios.post(`${API_URL}/products/add`, payload, {
+      const res = await axios.post(`${API_URL}/products/add`, payload, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
+
       if (res.data.success) {
         dispatch(setProducts([...products, res.data.product]));
         toast.success(res.data.message);
@@ -189,17 +188,22 @@ console.log("Submitting:", Object.fromEntries(payload));
 
               {/* Submit */}
               <div className="flex justify-end">
-                {loading ? (
-                  <Loader2 className="animate-spin" />
-                ) : (
-                  <Button
-                    type="submit"
-                    className="bg-red-600 hover:bg-red-700 text-white px-8 rounded-xl shadow-md shadow-red-600/30"
-                  >
-                    <Upload className="mr-2 h-4 w-4" />
-                    Add Product
-                  </Button>
-                )}
+                <Button
+                  type="submit"
+                  className="bg-red-600 hover:bg-red-700 text-white px-8 rounded-xl shadow-md shadow-red-600/30"
+                >
+                  {loading ? (
+                    <div className="flex gap-2 justify-end">
+                    <Loader2 className="animate-spin" />
+                    loading
+                    </div>
+                  ) : (
+                    <div className="flex justify-end">
+                      <Upload className="mr-2 h-4 w-4" />
+                      Add Product
+                    </div>
+                  )}
+                </Button>
               </div>
             </form>
           </CardContent>
