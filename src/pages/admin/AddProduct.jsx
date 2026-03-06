@@ -74,7 +74,7 @@ export default function AddProduct() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 p-6 text-white">
+    <div className="min-h-screen bg-zinc-950 pl-72 py-6 pr-6 text-white">
       <div className="max-w-4xl mx-auto">
         <Card className="bg-black border border-red-600/40 shadow-xl rounded-2xl">
           <CardHeader className="border-b border-red-600/40">

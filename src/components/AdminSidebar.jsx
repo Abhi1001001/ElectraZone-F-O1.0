@@ -31,7 +31,7 @@ const menuItems = [
 
 export default function AdminSidebar() {
   return (
-    <aside className="h-screen w-64 bg-black border-r border-red-600/40 text-white fixed left-0 top-0 flex flex-col">
+    <aside className="h-screen w-64 bg-black border-r border-red-600/40 text-white flex flex-col fixed top-0 ">
       {/* Logo */}
       <div className="h-16 flex items-center justify-center border-b border-red-600/40">
         <h1 className="text-xl font-bold tracking-wide text-red-500">
