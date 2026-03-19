@@ -43,7 +43,7 @@ export default function AdminSales() {
             <ShoppingCart className="text-red-500" />
             <div>
               <p className="text-sm text-zinc-400">Total Orders</p>
-              <h2 className="text-xl font-semibold text-zinc-300">1,245</h2>
+              <h2 className="text-xl font-semibold text-zinc-300">011</h2>
             </div>
           </CardContent>
         </Card>
@@ -53,7 +53,7 @@ export default function AdminSales() {
             <Users className="text-red-500" />
             <div>
               <p className="text-sm text-zinc-400">Customers</p>
-              <h2 className="text-xl font-semibold text-zinc-300">845</h2>
+              <h2 className="text-xl font-semibold text-zinc-300">03</h2>
             </div>
           </CardContent>
         </Card>
@@ -63,7 +63,7 @@ export default function AdminSales() {
             <IndianRupee className="text-red-500" />
             <div>
               <p className="text-sm text-zinc-400">Revenue</p>
-              <h2 className="text-xl font-semibold text-zinc-300">₹2,45,000</h2>
+              <h2 className="text-xl font-semibold text-zinc-300">₹48,297</h2>
             </div>
           </CardContent>
         </Card>

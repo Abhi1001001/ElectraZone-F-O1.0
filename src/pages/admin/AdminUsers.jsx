@@ -7,28 +7,6 @@ import { Trash2, Search, User, Loader2 } from "lucide-react";
 import axios from "axios";
 import { toast } from "sonner";
 
-// Dummy data (replace with API later)
-// const dummyUsers = [
-//   {
-//     _id: "1",
-//     firstName: "Abhishek",
-//     lastName: "Vishwakarma",
-//     email: "abhishek@gmail.com",
-//     role: "admin",
-//     isVerified: true,
-//     isLoggedIn: true,
-//   },
-//   {
-//     _id: "2",
-//     firstName: "Rahul",
-//     lastName: "Sharma",
-//     email: "rahul@gmail.com",
-//     role: "user",
-//     isVerified: false,
-//     isLoggedIn: false,
-//   },
-// ];
-
 export default function AdminUsers() {
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
